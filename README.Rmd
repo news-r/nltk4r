@@ -19,6 +19,7 @@ reticulate::use_virtualenv("./env", required = TRUE)
 ```
 
 <!-- badges: start -->
+[![Travis build status](https://travis-ci.org/news-r/nltk.svg?branch=master)](https://travis-ci.org/news-r/nltk)
 <!-- badges: end -->
 
 # nltk
