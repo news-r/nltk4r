@@ -39,7 +39,7 @@ This is a basic example which shows you how to solve a common problem:
 ```{r}
 library(nltk)
 
-sentence <- "Barack Obama was born in Hawaii."
+sentence <- "This is an R package."
 
 (tokens <- nltk_word_tokenize(sentence))
 

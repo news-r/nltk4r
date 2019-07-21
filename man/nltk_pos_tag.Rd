@@ -4,10 +4,12 @@
 \alias{nltk_pos_tag}
 \title{POS Tagger}
 \usage{
-nltk_pos_tag(tokens)
+nltk_pos_tag(tokens, tidy = TRUE)
 }
 \arguments{
 \item{tokens}{Sentence to tokenize.}
+
+\item{tidy}{Wehther to return results in tidy format.}
 }
 \description{
 Parts of speech tagger

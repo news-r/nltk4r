@@ -22,6 +22,7 @@ nltk_word_tokenize <- function(sentence) {
 #' Parts of speech tagger
 #' 
 #' @param tokens Sentence to tokenize.
+#' @param tidy Wehther to return results in tidy format.
 #' 
 #' @examples
 #' \donrun{
@@ -30,7 +31,12 @@ nltk_word_tokenize <- function(sentence) {
 #' }
 #' 
 #' @export
-nltk_pos_tag <- function(tokens) {
+nltk_pos_tag <- function(tokens, tidy = TRUE) {
   assert_that(!missing(tokens), msg = "Missing `tokens`")
-  nltk$pos_tag(tokens)
+  pos <- nltk$pos_tag(tokens)
+
+  if(tidy)
+    pos %>% 
+      purrr::map(purrr::set_names, c("word", "tag")) %>%  
+      purrr::map_dfr(tibble::as_tibble)
 }
