@@ -1,0 +1,42 @@
+---
+output: 
+  github_document:
+    html_preview: false
+---
+
+<!-- README.md is generated from README.Rmd. Please edit that file -->
+
+```{r, include = FALSE}
+knitr::opts_chunk$set(
+  collapse = TRUE,
+  comment = "#>",
+  fig.path = "man/figures/README-",
+  out.width = "100%"
+)
+
+# reticulate::use_python("/usr/bin/python3.6")
+reticulate::use_virtualenv("./env", required = TRUE)
+```
+
+<!-- badges: start -->
+<!-- badges: end -->
+
+# nltk
+
+Brings Python [Natural Language Toolkit](https://www.nltk.org/) to R.
+
+## Installation
+
+``` r
+# install.packages("remotes")
+remotes::install_github("news-r/nltk")
+```
+
+## Example
+
+This is a basic example which shows you how to solve a common problem:
+
+```{r}
+library(nltk)
+
+```
