@@ -16,6 +16,7 @@
 #' @export
 install_nltk <- function(method = "auto", conda = "auto") {
   reticulate::py_install("nltk", method = method, conda = conda)
+  reticulate::py_install("numpy", method = method, conda = conda)
 }
 
 #' Resources
@@ -35,6 +36,8 @@ install_nltk <- function(method = "auto", conda = "auto") {
 #' 
 #' @export
 nltk_download <- function(resource){
-  assert_that(!missing(resource), msg = "Missing `resource`")
-  nltk$download(resource)
+  if(!missing(resource))
+    nltk$download(resource)
+  else
+    nltk$download()
 }

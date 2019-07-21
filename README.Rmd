@@ -39,11 +39,15 @@ This is a basic example which shows you how to solve a common problem:
 ```{r}
 library(nltk)
 
-sentence <- "This is an R package."
+# tokenize
+(tokens <- nltk_word_tokenize("This is an R package."))
 
-(tokens <- nltk_word_tokenize(sentence))
-
+# Parts of speech
 nltk_pos_tag(tokens)
+pos <- nltk_pos_tag(tokens, tidy = FALSE)
+
+# Entity Extraction
+nltk_ne_chunk(pos)
 ```
 
 ## Reources
@@ -51,6 +55,8 @@ nltk_pos_tag(tokens)
 The above relies on external resources.
 
 ```r
-nltk_download("punkt")
-nltk_download("averaged_perceptron_tagger")
+nltk_download("punkt") # nltk_word_tokenize
+nltk_download("averaged_perceptron_tagger") # nltk_pos_tag
+nltk_download("maxent_ne_chunker") # nltk_ne_chunk
+nltk_download("words") # nltk_ne_chunk
 ```

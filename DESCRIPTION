@@ -15,5 +15,7 @@ LazyData: true
 Imports:
     assertthat,
     reticulate,
-    magrittr
+    magrittr,
+    tibble,
+    purrr
 RoxygenNote: 6.1.1

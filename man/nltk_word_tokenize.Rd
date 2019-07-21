@@ -13,7 +13,7 @@ nltk_word_tokenize(sentence)
 Word tokenizer
 }
 \examples{
-\\donrun{
+\dontrun{
 nltk_word_tokenize("This is an R package.") 
 }
 

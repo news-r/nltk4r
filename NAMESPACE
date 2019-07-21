@@ -3,6 +3,7 @@
 export("%>%")
 export(install_nltk)
 export(nltk_download)
+export(nltk_ne_chunk)
 export(nltk_pos_tag)
 export(nltk_word_tokenize)
 import(assertthat)

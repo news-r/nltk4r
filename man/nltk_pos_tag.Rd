@@ -15,7 +15,7 @@ nltk_pos_tag(tokens, tidy = TRUE)
 Parts of speech tagger
 }
 \examples{
-\\donrun{
+\dontrun{
 tokens <- nltk_word_tokenize("This is an R package.") 
 nltk_pos_tag(tokens)
 }

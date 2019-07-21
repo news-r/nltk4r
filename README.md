@@ -23,11 +23,11 @@ This is a basic example which shows you how to solve a common problem:
 ``` r
 library(nltk)
 
-sentence <- "This is an R package."
-
-(tokens <- nltk_word_tokenize(sentence))
+# tokenize
+(tokens <- nltk_word_tokenize("This is an R package."))
 #> [1] "This"    "is"      "an"      "R"       "package" "."
 
+# Parts of speech
 nltk_pos_tag(tokens)
 #> # A tibble: 6 x 2
 #>   word    tag  
@@ -38,6 +38,17 @@ nltk_pos_tag(tokens)
 #> 4 R       JJ   
 #> 5 package NN   
 #> 6 .       .
+pos <- nltk_pos_tag(tokens, tidy = FALSE)
+
+# Entity Extraction
+nltk_ne_chunk(pos)
+#> (S
+#>   ['This', 'DT']
+#>   ['is', 'VBZ']
+#>   ['an', 'DT']
+#>   ['R', 'JJ']
+#>   ['package', 'NN']
+#>   ['.', '.'])
 ```
 
 Reources
@@ -46,6 +57,8 @@ Reources
 The above relies on external resources.
 
 ``` r
-nltk_download("punkt")
-nltk_download("averaged_perceptron_tagger")
+nltk_download("punkt") # nltk_word_tokenize
+nltk_download("averaged_perceptron_tagger") # nltk_pos_tag
+nltk_download("maxent_ne_chunker") # nltk_ne_chunk
+nltk_download("words") # nltk_ne_chunk
 ```
