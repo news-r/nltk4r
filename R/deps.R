@@ -24,6 +24,12 @@ install_nltk <- function(method = "auto", conda = "auto") {
 #' 
 #' @param resource Resource to download.
 #' 
+#' @section Resources:
+#' \itemize{
+#'   \item{\code{punkt}}
+#'   \item{\code{averaged_perceptron_tagger}}
+#' }
+#' 
 #' @examples
 #' \dontrun{nltk_download("punkt")}
 #' 
