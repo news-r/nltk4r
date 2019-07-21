@@ -17,9 +17,9 @@ nltk_word_tokenize <- function(sentence) {
   nltk$word_tokenize(sentence)
 }
 
-#' Tagger
+#' POS Tagger
 #'
-#' Tagger
+#' Parts of speech tagger
 #' 
 #' @param tokens Sentence to tokenize.
 #' 

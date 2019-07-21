@@ -2,7 +2,7 @@
 % Please edit documentation in R/tokeniser.R
 \name{nltk_pos_tag}
 \alias{nltk_pos_tag}
-\title{Tagger}
+\title{POS Tagger}
 \usage{
 nltk_pos_tag(tokens)
 }
@@ -10,7 +10,7 @@ nltk_pos_tag(tokens)
 \item{tokens}{Sentence to tokenize.}
 }
 \description{
-Tagger
+Parts of speech tagger
 }
 \examples{
 \\donrun{

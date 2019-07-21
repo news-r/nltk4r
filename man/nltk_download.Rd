@@ -12,6 +12,14 @@ nltk_download(resource)
 \description{
 Download required resources.
 }
+\section{Resources}{
+
+\itemize{
+  \item{\code{punkt}}
+  \item{\code{averaged_perceptron_tagger}}
+}
+}
+
 \examples{
 \dontrun{nltk_download("punkt")}
 
