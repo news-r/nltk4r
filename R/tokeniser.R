@@ -6,13 +6,13 @@
 #' 
 #' @examples
 #' \dontrun{
-#' nltk_word_tokenize("This is an R package.") 
+#' word_tokenize("This is an R package.") 
 #' }
 #' 
 #' @import assertthat
 #' 
 #' @export
-nltk_word_tokenize <- function(sentence) {
+word_tokenize <- function(sentence) {
   assert_that(!missing(sentence), msg = "Missing `sentence`")
   nltk$word_tokenize(sentence)
 }
@@ -22,21 +22,22 @@ nltk_word_tokenize <- function(sentence) {
 #' Parts of speech tagger
 #' 
 #' @param tokens Sentence to tokenize.
-#' @param tidy Wehther to return results in tidy format.
+#' @param to_r Wehther to return results in tidy format.
 #' 
 #' @examples
 #' \dontrun{
-#' tokens <- nltk_word_tokenize("This is an R package.") 
-#' nltk_pos_tag(tokens)
+#' tokens <- word_tokenize("This is an R package.") 
+#' pos_tag(tokens)
 #' }
 #' 
 #' @export
-nltk_pos_tag <- function(tokens, tidy = TRUE) {
+pos_tag <- function(tokens, to_r = TRUE) {
   assert_that(!missing(tokens), msg = "Missing `tokens`")
   pos <- nltk$pos_tag(tokens)
 
-  if(tidy)
+  if(to_r)
     pos <- pos %>% 
+      reticulate::py_to_r() %>% 
       purrr::map(purrr::set_names, c("word", "tag")) %>%  
       purrr::map_dfr(tibble::as_tibble)
 
@@ -51,13 +52,13 @@ nltk_pos_tag <- function(tokens, tidy = TRUE) {
 #' 
 #' @examples
 #' \dontrun{
-#' tokens <- nltk_word_tokenize("This is an R package.") 
-#' tagged <- nltk_pos_tag(tokens)
-#' nltk_ne_chunk(tagged)
+#' tokens <- word_tokenize("This is an R package.") 
+#' tagged <- pos_tag(tokens)
+#' ne_chunk(tagged)
 #' }
 #' 
 #' @export
-nltk_ne_chunk <- function(pos) {
+ne_chunk <- function(pos) {
   assert_that(!missing(pos), msg = "Missing `pos`")
   nltk$chunk$ne_chunk(pos)
 }
