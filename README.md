@@ -82,8 +82,10 @@ pos <- pos_tag(tokens, to_r = FALSE)
 
 # Identify named entity
 chunks <- ne_chunk(pos)
-if(interactive()) chunks$draw()
+
+# needs additional dependencies
+chunks$draw()
 #> None
 ```
 
-\[./man/figures/tree.png\]
+![](./man/figures/tree.png)
