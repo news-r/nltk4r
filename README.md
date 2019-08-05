@@ -49,7 +49,7 @@ Example
 This is a basic example which shows you how to solve a common problem:
 
 ``` r
-library(nltk)
+library(nltk4r)
 
 # from Wikipedia
 str <- paste(
@@ -83,9 +83,17 @@ pos <- pos_tag(tokens, to_r = FALSE)
 # Identify named entity
 chunks <- ne_chunk(pos)
 
-# needs additional dependencies
-chunks$draw()
-#> None
-```
+# book data for examples
+(txt <- books("text1"))
+#> <Text: Moby Dick by Herman Melville 1851>
 
-![](./man/figures/tree.png)
+# generate text
+txt$generate()
+#> long , from one to the top - mast , and no coffin and went out a sea
+#> captain -- this peaking of the whales . , so as to preserve all his
+#> might had in former years abounding with them , they toil with their
+#> lances , strange tales of Southern whaling . at once the bravest
+#> Indians he was , after in vain strove to pierce the profundity . ?
+#> then ?" a levelled flame of pale , And give no chance , watch him ;
+#> though the line , it is to be gainsaid . have been
+```

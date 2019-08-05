@@ -20,6 +20,7 @@
 install_nltk <- function(envname = NULL, method = "auto", conda = "auto") {
   reticulate::py_install("nltk", envname = envname, method = method, conda = conda)
   reticulate::py_install("numpy", envname = envname, method = method, conda = conda)
+  reticulate::py_install("matplotlib", envname = envname, method = method, conda = conda)
   invisible()
 }
 

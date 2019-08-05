@@ -66,7 +66,7 @@ Now you're set, you can import the library and get started.
 This is a basic example which shows you how to solve a common problem:
 
 ```{r}
-library(nltk)
+library(nltk4r)
 
 # from Wikipedia
 str <- paste(
@@ -85,8 +85,9 @@ pos <- pos_tag(tokens, to_r = FALSE)
 # Identify named entity
 chunks <- ne_chunk(pos)
 
-# needs additional dependencies
-chunks$draw()
-```
+# book data for examples
+(txt <- books("text1"))
 
-![](./man/figures/tree.png)
+# generate text
+txt$generate()
+```

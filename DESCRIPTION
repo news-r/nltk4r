@@ -16,6 +16,8 @@ Imports:
     assertthat,
     reticulate,
     magrittr,
+    crayon,
     tibble,
-    purrr
+    purrr,
+    cli
 RoxygenNote: 6.1.1
