@@ -13,8 +13,10 @@ books(text = "text1")
 Access data useful to follow along the \href{https://www.nltk.org/book}{NLTK Book}.
 }
 \examples{
+\dontrun{
 mody_dick <- books()
 mody_dick$concordance("monstrous")
 mody_dick$similar("monstrous")
+}
 
 }
