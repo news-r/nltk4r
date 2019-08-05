@@ -23,9 +23,9 @@ reticulate::use_virtualenv("./env", required = TRUE)
 [![Lifecycle: experimental](https://img.shields.io/badge/lifecycle-experimental-orange.svg)](https://www.tidyverse.org/lifecycle/#experimental)
 <!-- badges: end -->
 
-# nltk
+# Natural Language Toolkit for R
 
-Brings Python [Natural Language Toolkit](https://www.nltk.org/) to R.
+Python's [Natural Language Toolkit](https://www.nltk.org/) for R.
 
 ## Installation
 
@@ -33,7 +33,7 @@ First install the package.
 
 ``` r
 # install.packages("remotes")
-remotes::install_github("news-r/nltk")
+remotes::install_github("news-r/nltk4r")
 ```
 
 You are advised to use a virtual environment.
@@ -46,14 +46,16 @@ my_env <- "./env"
 args <- paste("-m venv", my_env)
 system2("python3", args) # create environment
 reticulate::use_virtualenv(my_env, required = TRUE) # force reticulate to use env
-nltk::install_nltk(my_env) # install gensim & scikit-learn in environment
+nltk4r::install_nltk(my_env) # install gensim & scikit-learn in environment
 ```
 
 Then download the necessary datasets.
 
 ``` r
-download_datasets()
+nltk4r::download_datasets("all")
 ```
+
+Now you're set, you can import the library and get started.
 
 ## Example
 
@@ -71,15 +73,4 @@ pos <- pos_tag(tokens, to_r = FALSE)
 
 # Entity Extraction
 ne_chunk(pos)
-```
-
-## Reources
-
-The above relies on external resources.
-
-```r
-download_datasets("punkt") # word_tokenize
-download_datasets("averaged_perceptron_tagger") # pos_tag
-download_datasets("maxent_ne_chunker") # ne_chunk
-download_datasets("words") # ne_chunk
 ```
