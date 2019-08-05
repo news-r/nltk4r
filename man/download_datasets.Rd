@@ -4,22 +4,14 @@
 \alias{download_datasets}
 \title{Resources}
 \usage{
-download_datasets(resource = NULL)
+download_datasets(resource = "all")
 }
 \arguments{
-\item{resource}{Resource to download.}
+\item{resource}{Resource to download, defaults to \code{all}, set to \code{NULL} to get prompted.}
 }
 \description{
 Download required resources.
 }
-\section{Resources}{
-
-\itemize{
-  \item{\code{punkt}}
-  \item{\code{averaged_perceptron_tagger}}
-}
-}
-
 \examples{
 \dontrun{download_datasets("punkt")}
 

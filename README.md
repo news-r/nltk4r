@@ -18,17 +18,21 @@ First install the package.
 remotes::install_github("news-r/nltk4r")
 ```
 
-You are advised to use a virtual environment.
+You are advised to install the Python dependencies in a virtual environment.
 
 ``` r
 # replace with path of your choice
 my_env <- "./env"
 
-# run this (works on unix)
+# create a virtual environment (tested on unix)
 args <- paste("-m venv", my_env)
-system2("python3", args) # create environment
-reticulate::use_virtualenv(my_env, required = TRUE) # force reticulate to use env
-nltk4r::install_nltk(my_env) # install gensim & scikit-learn in environment
+system2("python3", args) 
+
+# force reticulate to use env
+reticulate::use_virtualenv(my_env, required = TRUE)
+
+# install gensim & scikit-learn in environment
+nltk4r::install_nltk(my_env) 
 ```
 
 Then download the necessary datasets.
@@ -46,31 +50,40 @@ This is a basic example which shows you how to solve a common problem:
 
 ``` r
 library(nltk)
-#> 
-#> Attaching package: 'nltk'
-#> The following objects are masked from 'package:nltk4r':
-#> 
-#>     download_datasets, install_nltk, ne_chunk, pos_tag,
-#>     word_tokenize
+
+# from Wikipedia
+str <- paste(
+  "R is a programming language and free software environment",
+  "for statistical computing and graphics supported by the R Foundation",
+  "for Statistical Computing."
+)
 
 # tokenize
-(tokens <- word_tokenize("This is an R package."))
-#> ['This', 'is', 'an', 'R', 'package', '.']
+(tokens <- word_tokenize(str))
+#> List (23 items)
 
 # Parts of speech
 pos_tag(tokens)
-#> # A tibble: 6 x 2
-#>   word    tag  
-#>   <chr>   <chr>
-#> 1 This    DT   
-#> 2 is      VBZ  
-#> 3 an      DT   
-#> 4 R       JJ   
-#> 5 package NN   
-#> 6 .       .
+#> # A tibble: 23 x 2
+#>    word        tag  
+#>    <chr>       <chr>
+#>  1 R           NNP  
+#>  2 is          VBZ  
+#>  3 a           DT   
+#>  4 programming JJ   
+#>  5 language    NN   
+#>  6 and         CC   
+#>  7 free        JJ   
+#>  8 software    NN   
+#>  9 environment NN   
+#> 10 for         IN   
+#> # … with 13 more rows
 pos <- pos_tag(tokens, to_r = FALSE)
 
-# Entity Extraction
-ne_chunk(pos)
-#> (S This/DT is/VBZ an/DT R/JJ package/NN ./.)
+# Identify named entity
+chunks <- ne_chunk(pos)
+if(interactive()) chunks$draw()
+#> None
 ```
+
+\[./man/figures/tree.png\]
