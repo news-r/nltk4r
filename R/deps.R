@@ -27,19 +27,13 @@ install_nltk <- function(envname = NULL, method = "auto", conda = "auto") {
 #' 
 #' Download required resources.
 #' 
-#' @param resource Resource to download.
-#' 
-#' @section Resources:
-#' \itemize{
-#'   \item{\code{punkt}}
-#'   \item{\code{averaged_perceptron_tagger}}
-#' }
+#' @param resource Resource to download, defaults to \code{all}, set to \code{NULL} to get prompted.
 #' 
 #' @examples
 #' \dontrun{download_datasets("punkt")}
 #' 
 #' @export
-download_datasets <- function(resource = NULL){
+download_datasets <- function(resource = "all"){
   if(!is.null(resource))
     nltk$download(resource)
   else
