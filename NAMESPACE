@@ -3,6 +3,7 @@
 export("%>%")
 export(books)
 export(download_datasets)
+export(freq_dist)
 export(install_nltk)
 export(ne_chunk)
 export(pos_tag)

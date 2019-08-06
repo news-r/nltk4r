@@ -22,7 +22,7 @@ word_tokenize <- function(sentence) {
 #' Parts of speech tagger
 #' 
 #' @param tokens Sentence to tokenize.
-#' @param to_r Wehther to return results in tidy format.
+#' @param to_r Whether to return results in tidy format.
 #' 
 #' @examples
 #' \dontrun{
@@ -31,7 +31,7 @@ word_tokenize <- function(sentence) {
 #' }
 #' 
 #' @export
-pos_tag <- function(tokens, to_r = TRUE) {
+pos_tag <- function(tokens, to_r = FALSE) {
   assert_that(!missing(tokens), msg = "Missing `tokens`")
   pos <- nltk$pos_tag(tokens)
 

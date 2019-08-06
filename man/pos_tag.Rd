@@ -4,12 +4,12 @@
 \alias{pos_tag}
 \title{POS Tagger}
 \usage{
-pos_tag(tokens, to_r = TRUE)
+pos_tag(tokens, to_r = FALSE)
 }
 \arguments{
 \item{tokens}{Sentence to tokenize.}
 
-\item{to_r}{Wehther to return results in tidy format.}
+\item{to_r}{Whether to return results in tidy format.}
 }
 \description{
 Parts of speech tagger

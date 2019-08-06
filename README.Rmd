@@ -79,8 +79,8 @@ str <- paste(
 (tokens <- word_tokenize(str))
 
 # Parts of speech
-pos_tag(tokens)
-pos <- pos_tag(tokens, to_r = FALSE)
+pos_tag(tokens, to_r = TRUE) # titdy R data structure
+pos <- pos_tag(tokens)
 
 # Identify named entity
 chunks <- ne_chunk(pos)
