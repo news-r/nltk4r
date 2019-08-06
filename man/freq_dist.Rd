@@ -17,7 +17,8 @@ Compute frequency of vocabulary in text.
 \examples{
 \dontrun{
 txt3 <- books("text3")
-freq_dist(txt3)
+fq <- freq_dist(txt3)
+fq$most_common(10)
 }
 
 }
