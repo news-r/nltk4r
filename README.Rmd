@@ -19,7 +19,7 @@ reticulate::use_virtualenv("./env", required = TRUE)
 ```
 
 <!-- badges: start -->
-[![Travis build status](https://travis-ci.org/news-r/nltk.svg?branch=master)](https://travis-ci.org/news-r/nltk)
+[![Travis build status](https://travis-ci.org/news-r/nltk4r.svg?branch=master)](https://travis-ci.org/news-r/nltk4r)
 [![Lifecycle: experimental](https://img.shields.io/badge/lifecycle-experimental-orange.svg)](https://www.tidyverse.org/lifecycle/#experimental)
 <!-- badges: end -->
 
@@ -85,9 +85,9 @@ pos <- pos_tag(tokens)
 # Identify named entity
 chunks <- ne_chunk(pos)
 
-# book data for examples
-(txt <- books("text1"))
+# convert to text
+txt <- nltk_text(tokens)
 
-# generate text
+# generate
 txt$generate()
 ```

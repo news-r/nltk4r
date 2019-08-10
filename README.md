@@ -1,7 +1,7 @@
 
 <!-- README.md is generated from README.Rmd. Please edit that file -->
 <!-- badges: start -->
-[![Travis build status](https://travis-ci.org/news-r/nltk.svg?branch=master)](https://travis-ci.org/news-r/nltk) [![Lifecycle: experimental](https://img.shields.io/badge/lifecycle-experimental-orange.svg)](https://www.tidyverse.org/lifecycle/#experimental) <!-- badges: end -->
+[![Travis build status](https://travis-ci.org/news-r/nltk4r.svg?branch=master)](https://travis-ci.org/news-r/nltk4r) [![Lifecycle: experimental](https://img.shields.io/badge/lifecycle-experimental-orange.svg)](https://www.tidyverse.org/lifecycle/#experimental) <!-- badges: end -->
 
 Natural Language Toolkit for R
 ==============================
@@ -63,7 +63,7 @@ str <- paste(
 #> List (23 items)
 
 # Parts of speech
-pos_tag(tokens)
+pos_tag(tokens, to_r = TRUE) # titdy R data structure
 #> # A tibble: 23 x 2
 #>    word        tag  
 #>    <chr>       <chr>
@@ -78,22 +78,24 @@ pos_tag(tokens)
 #>  9 environment NN   
 #> 10 for         IN   
 #> # … with 13 more rows
-pos <- pos_tag(tokens, to_r = FALSE)
+pos <- pos_tag(tokens)
 
 # Identify named entity
 chunks <- ne_chunk(pos)
 
-# book data for examples
-(txt <- books("text1"))
-#> <Text: Moby Dick by Herman Melville 1851>
+# convert to text
+txt <- nltk_text(tokens)
 
-# generate text
+# generate
 txt$generate()
-#> long , from one to the top - mast , and no coffin and went out a sea
-#> captain -- this peaking of the whales . , so as to preserve all his
-#> might had in former years abounding with them , they toil with their
-#> lances , strange tales of Southern whaling . at once the bravest
-#> Indians he was , after in vain strove to pierce the profundity . ?
-#> then ?" a levelled flame of pale , And give no chance , watch him ;
-#> though the line , it is to be gainsaid . have been
+#> for Statistical Computing . and graphics supported by the R Foundation
+#> for Statistical Computing . R Foundation for Statistical Computing .
+#> software environment for statistical computing and graphics supported
+#> by the R Foundation for Statistical Computing . Statistical Computing
+#> . computing and graphics supported by the R Foundation for Statistical
+#> Computing . by the R Foundation for Statistical Computing . Foundation
+#> for Statistical Computing . the R Foundation for Statistical Computing
+#> . for statistical computing and graphics supported by the R Foundation
+#> for Statistical Computing . statistical computing and graphics
+#> supported by the R Foundation for Statistical Computing . the
 ```
