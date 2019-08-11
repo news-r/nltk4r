@@ -44,10 +44,10 @@ gutenberg_files <- function(to_r = FALSE){
 #' @export
 gutenberg_raw <- function(file, to_r = FALSE){
   assert_that(!missing(file))
-  categories <- nltk$corpus$gutenberg$raw(file)
+  raw <- nltk$corpus$gutenberg$raw(file)
   if(to_r)
-    categories <- reticulate::py_to_r(categories)
-  return(categories)
+    raw <- reticulate::py_to_r(raw)
+  return(raw)
 }
 
 #' @rdname gutenberg
@@ -214,4 +214,14 @@ inaugural_sents <- function(file, to_r = FALSE){
     return(tidy_sents)
   }
   return(sents)
+}
+
+#' @rdname inaugural
+#' @export
+inaugural_raw <- function(file, to_r = FALSE){
+  assert_that(!missing(file))
+  raw <- nltk$corpus$inaugural$raw(file)
+  if(to_r)
+    raw <- reticulate::py_to_r(raw)
+  return(raw)
 }

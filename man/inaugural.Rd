@@ -5,6 +5,7 @@
 \alias{inaugural_files}
 \alias{inaugural_words}
 \alias{inaugural_sents}
+\alias{inaugural_raw}
 \title{Inaugural Address Corpus}
 \usage{
 inaugural_files(to_r = FALSE)
@@ -12,6 +13,8 @@ inaugural_files(to_r = FALSE)
 inaugural_words(file, to_r = FALSE)
 
 inaugural_sents(file, to_r = FALSE)
+
+inaugural_raw(file, to_r = FALSE)
 }
 \arguments{
 \item{to_r}{Whether to return results in R tidy format.}
