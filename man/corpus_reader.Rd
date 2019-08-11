@@ -2,9 +2,13 @@
 % Please edit documentation in R/corpus.R
 \name{corpus_reader}
 \alias{corpus_reader}
+\alias{plain_text_corpus_reader}
+\alias{bracket_parse_corpus_reader}
 \title{Corpus Reader}
 \usage{
-corpus_reader(root, pattern = ".*")
+plain_text_corpus_reader(root, pattern = ".*")
+
+bracket_parse_corpus_reader(root, pattern = ".*")
 }
 \arguments{
 \item{root}{The root directory.}
