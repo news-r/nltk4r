@@ -60,3 +60,25 @@ gutenberg_sents <- function(file){
   assert_that(!missing(file))
   nltk$corpus$gutenberg$sents(file)
 }
+
+#' Brown Corpus
+#' 
+#' The Brown Corpus was the first million-word electronic corpus of English, 
+#' created in 1961 at Brown University. This corpus contains text from 500 
+#' sources, and the sources have been categorized by genre, such as news, 
+#' editorial, and so on. 1.1 gives an example of each genre (for a 
+#' complete list, see \url{http://icame.uib.no/brown/bcm-los.html}).
+#' 
+#' @examples
+#' \dontrun{
+#' brown <- brown_corpus()
+#' brown$categories() %>%
+#'   reticulate::py_to_r()
+#' }
+#' 
+#' @return Return NLTK's Brown corpus as Python object.
+#' 
+#' @export
+brown_corpus <- function(){
+  nltk$corpus$brown
+}
