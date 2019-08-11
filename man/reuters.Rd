@@ -9,9 +9,9 @@
 \usage{
 reuters_files(category = NULL, to_r = FALSE)
 
-reuters_categories(...)
+reuters_categories(..., to_r = FALSE)
 
-reuters_words(...)
+reuters_words(..., to_r = FALSE)
 }
 \arguments{
 \item{category}{A category or a list of categories, see examples.}

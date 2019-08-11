@@ -10,11 +10,11 @@
 \usage{
 gutenberg_files(to_r = FALSE)
 
-gutenberg_raw(file)
+gutenberg_raw(file, to_r = FALSE)
 
-gutenberg_words(file)
+gutenberg_words(file, to_r = FALSE)
 
-gutenberg_sents(file)
+gutenberg_sents(file, to_r = FALSE)
 }
 \arguments{
 \item{to_r}{Whether to return results in R tidy format.}

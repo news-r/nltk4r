@@ -42,23 +42,46 @@ gutenberg_files <- function(to_r = FALSE){
 
 #' @rdname gutenberg
 #' @export
-gutenberg_raw <- function(file){
+gutenberg_raw <- function(file, to_r = FALSE){
   assert_that(!missing(file))
-  nltk$corpus$gutenberg$raw(file)
+  categories <- nltk$corpus$gutenberg$raw(file)
+  if(to_r)
+    categories <- reticulate::py_to_r(categories)
+  return(categories)
 }
 
 #' @rdname gutenberg
 #' @export
-gutenberg_words <- function(file){
+gutenberg_words <- function(file, to_r = FALSE){
   assert_that(!missing(file))
-  nltk$corpus$gutenberg$words(file)
+  words <- nltk$corpus$gutenberg$words(file)
+  if(to_r){
+    tidy_words <- c()
+    L <- reticulate::py_len(words) - 1
+    for(i in 0:L){
+      w <- reticulate::py_to_r(words[[i]])
+      tidy_words <- append(tidy_words, w)
+    }
+    return(tidy_words)
+  }
+  return(words)
 }
 
 #' @rdname gutenberg
 #' @export
-gutenberg_sents <- function(file){
+gutenberg_sents <- function(file, to_r = FALSE){
   assert_that(!missing(file))
-  nltk$corpus$gutenberg$sents(file)
+  sents <- nltk$corpus$gutenberg$sents(file)
+  if(to_r){
+    tidy_sents <- c()
+    L <- reticulate::py_len(sents) - 1
+    for(i in 0:L){
+      w <- reticulate::py_to_r(sents[[i]])
+      tidy_sents <- append(tidy_sents, w)
+    }
+    return(tidy_sents)
+  }
+  return(sents)
 }
 
 #' Brown Corpus
@@ -114,12 +137,81 @@ reuters_files <- function(category = NULL, to_r = FALSE){
 
 #' @rdname reuters
 #' @export
-reuters_categories <- function(...){
-  nltk$corpus$reuters$categories(...)
+reuters_categories <- function(..., to_r = FALSE){
+  categories <- nltk$corpus$reuters$categories(...)
+  if(to_r)
+    categories <- reticulate::py_to_r(categories)
+  return(categories)
 }
 
 #' @rdname reuters
 #' @export
-reuters_words <- function(...){
-  nltk$corpus$reuters$words(...)
+reuters_words <- function(..., to_r = FALSE){
+  words <- nltk$corpus$reuters$words(...)
+  if(to_r){
+    tidy_words <- c()
+    L <- reticulate::py_len(words) - 1
+    for(i in 0:L){
+      w <- reticulate::py_to_r(words[[i]])
+      tidy_words <- append(tidy_words, w)
+    }
+    return(tidy_words)
+  }
+  return(words)
+}
+
+#' Inaugural Address Corpus
+#' 
+#' Corpus of Inaugural Addresses of US Presidents.
+#' 
+#' @param to_r Whether to return results in R tidy format.
+#' @param file An Inaugural address as returned by \code{inaugural_files}.
+#' 
+#' @examples
+#' \dontrun{
+#' files <- inaugural_files(to_r = TRUE)
+#' inaugural_words(sample(files, 1)) 
+#' }
+#' 
+#' @name inaugural
+#' @export
+inaugural_files <- function(to_r = FALSE){
+  files <- nltk$corpus$inaugural$fileids()
+  if(to_r)
+    files <- reticulate::py_to_r(files)
+  return(files)
+}
+
+#' @rdname inaugural
+#' @export
+inaugural_words <- function(file, to_r = FALSE){
+  assert_that(file, msg = "Missing file, see `inaugural_files`")
+  words <- nltk$corpus$inaugural$words(file)
+  if(to_r){
+    tidy_words <- c()
+    L <- reticulate::py_len(words) - 1
+    for(i in 0:L){
+      w <- reticulate::py_to_r(words[[i]])
+      tidy_words <- append(tidy_words, w)
+    }
+    return(tidy_words)
+  }
+  return(words)
+}
+
+#' @rdname inaugural
+#' @export
+inaugural_sents <- function(file, to_r = FALSE){
+  assert_that(file, msg = "Missing file, see `inaugural_files`")
+  sents <- nltk$corpus$inaugural$sents(file)
+  if(to_r){
+    tidy_sents <- c()
+    L <- reticulate::py_len(sents) - 1
+    for(i in 0:L){
+      w <- reticulate::py_to_r(sents[[i]])
+      tidy_sents <- append(tidy_sents, w)
+    }
+    return(tidy_sents)
+  }
+  return(sents)
 }
