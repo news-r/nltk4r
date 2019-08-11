@@ -19,7 +19,8 @@ complete list, see \url{http://icame.uib.no/brown/bcm-los.html}).
 \examples{
 \dontrun{
 brown <- brown_corpus()
-brown$categories() 
+brown$categories() \%>\%
+  reticulate::py_to_r()
 }
 
 }
