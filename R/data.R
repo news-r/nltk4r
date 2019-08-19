@@ -146,6 +146,15 @@ reuters_categories <- function(..., to_r = FALSE){
 
 #' @rdname reuters
 #' @export
+reuters_raw <- function(..., to_r = FALSE){
+  txt <- nltk$corpus$reuters$raw(...)
+  if(to_r)
+    txt <- reticulate::py_to_r(txt)
+  return(txt)
+}
+
+#' @rdname reuters
+#' @export
 reuters_words <- function(..., to_r = FALSE){
   words <- nltk$corpus$reuters$words(...)
   if(to_r){
