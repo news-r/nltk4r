@@ -234,3 +234,29 @@ inaugural_raw <- function(file, to_r = FALSE){
     raw <- reticulate::py_to_r(raw)
   return(raw)
 }
+
+#' First Names
+#' 
+#' First names to build a gender classifier.
+#' 
+#' @param to_r Whether to return results in R tidy format.
+#' 
+#' @examples
+#' \dontrun{
+#' first_names(to_r = TRUE)
+#' }
+#' 
+#' @export
+first_names <- function(to_r = FALSE){
+  men <- nltk$corpus$names$words("male.txt")
+  women <- nltk$corpus$names$words("female.txt")
+  if(to_r){
+    nms <- tibble::tibble(
+      name = c(reticulate::py_to_r(men), reticulate::py_to_r(women)),
+      gender = c(rep("male", length(men)), rep("female", length(women)))
+    )
+  } else {
+    nms <- c(men, women)
+  }
+  return(nms)
+}

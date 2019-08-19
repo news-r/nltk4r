@@ -91,3 +91,44 @@ txt <- nltk_text(tokens)
 # generate
 txt$generate()
 ```
+
+## Gender Classifier
+
+Classify gender based on last letter in name using naive bayes classifier, from the [book](https://www.nltk.org/book/ch06.html)
+
+```{r}
+# load data
+first_names <- first_names(to_r = TRUE) 
+
+# extract last letter as feature
+gender_feature <- function(nms){
+  nms <- substr(nms, nchar(nms), nchar(nms))
+  purrr::map(nms, function(x){
+    list(
+      last_letter = x
+    )
+  })
+}
+
+features <- gender_feature(first_names$name)
+feature_set <- purrr::map2(features, first_names$gender, function(g, l){
+  list(
+    g, l
+  )
+})
+
+# split train test
+train <- list()
+test <- list()
+for(i in 1:length(feature_set)){
+  draw <- sample(1:2, 1)
+  if(draw == 1)
+    train <- append(train, list(feature_set[[i]]))
+  else
+    test <- append(test, list(feature_set[[i]]))
+}
+
+classifier <- train_bayes_classifier(train)
+classifier$classify(gender_feature("Neo")[[1]])
+classifier$classify(gender_feature("Sara")[[1]])
+```
