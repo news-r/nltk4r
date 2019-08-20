@@ -77,7 +77,7 @@ gutenberg_sents <- function(file, to_r = FALSE){
     L <- reticulate::py_len(sents) - 1
     for(i in 0:L){
       w <- reticulate::py_to_r(sents[[i]])
-      tidy_sents <- append(tidy_sents, w)
+      tidy_sents <- append(tidy_sents, list(w))
     }
     return(tidy_sents)
   }
@@ -169,6 +169,22 @@ reuters_words <- function(..., to_r = FALSE){
   return(words)
 }
 
+#' @rdname reuters
+#' @export
+reuters_sents <- function(..., to_r = FALSE){
+  words <- nltk$corpus$reuters$sents(...)
+  if(to_r){
+    tidy_words <- c()
+    L <- reticulate::py_len(words) - 1
+    for(i in 0:L){
+      w <- reticulate::py_to_r(words[[i]])
+      tidy_words <- append(tidy_words, list(w))
+    }
+    return(tidy_words)
+  }
+  return(words)
+}
+
 #' Inaugural Address Corpus
 #' 
 #' Corpus of Inaugural Addresses of US Presidents.
@@ -179,7 +195,7 @@ reuters_words <- function(..., to_r = FALSE){
 #' @examples
 #' \dontrun{
 #' files <- inaugural_files(to_r = TRUE)
-#' inaugural_words(sample(files, 1)) 
+#' inaugural_sents(sample(files, 1)) 
 #' }
 #' 
 #' @name inaugural
@@ -194,7 +210,7 @@ inaugural_files <- function(to_r = FALSE){
 #' @rdname inaugural
 #' @export
 inaugural_words <- function(file, to_r = FALSE){
-  assert_that(file, msg = "Missing file, see `inaugural_files`")
+  assert_that(!missing(file), msg = "Missing file, see `inaugural_files`")
   words <- nltk$corpus$inaugural$words(file)
   if(to_r){
     tidy_words <- c()
@@ -211,14 +227,14 @@ inaugural_words <- function(file, to_r = FALSE){
 #' @rdname inaugural
 #' @export
 inaugural_sents <- function(file, to_r = FALSE){
-  assert_that(file, msg = "Missing file, see `inaugural_files`")
+  assert_that(!missing(file), msg = "Missing file, see `inaugural_files`")
   sents <- nltk$corpus$inaugural$sents(file)
   if(to_r){
     tidy_sents <- c()
     L <- reticulate::py_len(sents) - 1
     for(i in 0:L){
       w <- reticulate::py_to_r(sents[[i]])
-      tidy_sents <- append(tidy_sents, w)
+      tidy_sents <- append(tidy_sents, list(w))
     }
     return(tidy_sents)
   }
@@ -260,4 +276,85 @@ first_names <- function(to_r = FALSE){
       reticulate::r_to_py()
   }
   return(nms)
+}
+
+#' Movie Reviews Corpus
+#' 
+#' Corpus of movie reviews.
+#' 
+#' @param to_r Whether to return results in R tidy format.
+#' @param file A file containing movie reviews as returned by \code{movie_reviews_files}.
+#' @param ... Any other options such as category.
+#' 
+#' @examples
+#' \dontrun{
+#' files <- movie_reviews_files(to_r = TRUE)
+#' movie_reviews_words(sample(files, 1)) 
+#' 
+#' # by category
+#' (movie_reviews_categories())
+#' positive_reviews <- movie_reviews_files("pos", to_r = TRUE)
+#' }
+#' 
+#' @name movie_reviews
+#' @export
+movie_reviews_files <- function(..., to_r = FALSE){
+  files <- nltk$corpus$movie_reviews$fileids(...)
+  if(to_r)
+    files <- reticulate::py_to_r(files)
+  return(files)
+}
+
+#' @rdname movie_reviews
+#' @export
+movie_reviews_words <- function(file, to_r = FALSE){
+  assert_that(!missing(file), msg = "Missing file, see `inaugural_files`")
+  words <- nltk$corpus$movie_reviews$words(file)
+  if(to_r){
+    tidy_words <- c()
+    L <- reticulate::py_len(words) - 1
+    for(i in 0:L){
+      w <- reticulate::py_to_r(words[[i]])
+      tidy_words <- append(tidy_words, w)
+    }
+    return(tidy_words)
+  }
+  return(words)
+}
+
+#' @rdname movie_reviews
+#' @export
+movie_reviews_categories <- function(file = NULL, to_r = FALSE){
+  assert_that(!missing(file), msg = "Missing file, see `inaugural_files`")
+  cats <- nltk$corpus$movie_reviews$categories(file)
+  if(to_r)
+    cats <- reticulate::py_to_r(cats)
+  return(cats)
+}
+
+#' @rdname movie_reviews
+#' @export
+movie_reviews_sents <- function(file, to_r = FALSE){
+  assert_that(!missing(file), msg = "Missing file, see `inaugural_files`")
+  sents <- nltk$corpus$movie_reviews$sents(file)
+  if(to_r){
+    tidy_sents <- c()
+    L <- reticulate::py_len(sents) - 1
+    for(i in 0:L){
+      w <- reticulate::py_to_r(sents[[i]])
+      tidy_sents <- append(tidy_sents, list(w))
+    }
+    return(tidy_sents)
+  }
+  return(sents)
+}
+
+#' @rdname movie_reviews
+#' @export
+movie_reviews_raw <- function(file, to_r = FALSE){
+  assert_that(!missing(file))
+  raw <- nltk$corpus$movie_reviews$raw(file)
+  if(to_r)
+    raw <- reticulate::py_to_r(raw)
+  return(raw)
 }

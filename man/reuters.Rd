@@ -6,6 +6,7 @@
 \alias{reuters_categories}
 \alias{reuters_raw}
 \alias{reuters_words}
+\alias{reuters_sents}
 \title{Reuters}
 \usage{
 reuters_files(category = NULL, to_r = FALSE)
@@ -15,6 +16,8 @@ reuters_categories(..., to_r = FALSE)
 reuters_raw(..., to_r = FALSE)
 
 reuters_words(..., to_r = FALSE)
+
+reuters_sents(..., to_r = FALSE)
 }
 \arguments{
 \item{category}{A category or a list of categories, see examples.}

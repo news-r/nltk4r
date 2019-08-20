@@ -27,7 +27,7 @@ Corpus of Inaugural Addresses of US Presidents.
 \examples{
 \dontrun{
 files <- inaugural_files(to_r = TRUE)
-inaugural_words(sample(files, 1)) 
+inaugural_sents(sample(files, 1)) 
 }
 
 }
