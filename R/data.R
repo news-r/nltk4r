@@ -307,8 +307,7 @@ movie_reviews_files <- function(..., to_r = FALSE){
 
 #' @rdname movie_reviews
 #' @export
-movie_reviews_words <- function(file, to_r = FALSE){
-  assert_that(!missing(file), msg = "Missing file, see `inaugural_files`")
+movie_reviews_words <- function(..., to_r = FALSE){
   words <- nltk$corpus$movie_reviews$words(file)
   if(to_r){
     tidy_words <- c()
@@ -324,8 +323,7 @@ movie_reviews_words <- function(file, to_r = FALSE){
 
 #' @rdname movie_reviews
 #' @export
-movie_reviews_categories <- function(file = NULL, to_r = FALSE){
-  assert_that(!missing(file), msg = "Missing file, see `inaugural_files`")
+movie_reviews_categories <- function(..., = NULL, to_r = FALSE){
   cats <- nltk$corpus$movie_reviews$categories(file)
   if(to_r)
     cats <- reticulate::py_to_r(cats)
@@ -334,8 +332,7 @@ movie_reviews_categories <- function(file = NULL, to_r = FALSE){
 
 #' @rdname movie_reviews
 #' @export
-movie_reviews_sents <- function(file, to_r = FALSE){
-  assert_that(!missing(file), msg = "Missing file, see `inaugural_files`")
+movie_reviews_sents <- function(..., to_r = FALSE){
   sents <- nltk$corpus$movie_reviews$sents(file)
   if(to_r){
     tidy_sents <- c()
@@ -351,8 +348,7 @@ movie_reviews_sents <- function(file, to_r = FALSE){
 
 #' @rdname movie_reviews
 #' @export
-movie_reviews_raw <- function(file, to_r = FALSE){
-  assert_that(!missing(file))
+movie_reviews_raw <- function(..., to_r = FALSE){
   raw <- nltk$corpus$movie_reviews$raw(file)
   if(to_r)
     raw <- reticulate::py_to_r(raw)

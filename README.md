@@ -1,15 +1,19 @@
 
 <!-- README.md is generated from README.Rmd. Please edit that file -->
+
 <!-- badges: start -->
-[![Travis build status](https://travis-ci.org/news-r/nltk4r.svg?branch=master)](https://travis-ci.org/news-r/nltk4r) [![Lifecycle: experimental](https://img.shields.io/badge/lifecycle-experimental-orange.svg)](https://www.tidyverse.org/lifecycle/#experimental) <!-- badges: end -->
 
-Natural Language Toolkit for R
-==============================
+[![Travis build
+status](https://travis-ci.org/news-r/nltk4r.svg?branch=master)](https://travis-ci.org/news-r/nltk4r)
+[![Lifecycle:
+experimental](https://img.shields.io/badge/lifecycle-experimental-orange.svg)](https://www.tidyverse.org/lifecycle/#experimental)
+<!-- badges: end -->
 
-Python's [Natural Language Toolkit](https://www.nltk.org/) for R.
+# Natural Language Toolkit for R
 
-Installation
-------------
+Python’s [Natural Language Toolkit](https://www.nltk.org/) for R.
+
+## Installation
 
 First install the package.
 
@@ -18,7 +22,7 @@ First install the package.
 remotes::install_github("news-r/nltk4r")
 ```
 
-You are advised to install the Python dependencies in a virtual environment.
+You are advised to make use of a virtual environment.
 
 ``` r
 # replace with path of your choice
@@ -41,10 +45,9 @@ Then download the necessary datasets.
 nltk4r::download_datasets("all")
 ```
 
-Now you're set, you can import the library and get started.
+Now you’re set, you can import the library and get started.
 
-Example
--------
+## Examples
 
 This is a basic example which shows you how to solve a common problem:
 
@@ -100,10 +103,12 @@ txt$generate()
 #> supported by the R Foundation for Statistical Computing . the
 ```
 
-Gender Classifier
------------------
+## Gender Classifier
 
-Classify gender based on last letter in name using naive bayes classifier, from the [book](https://www.nltk.org/book/ch06.html)
+Classify gender based on last letter in name using naive bayes
+classifier, from the [book](https://www.nltk.org/book/ch06.html)
+
+### Using last letter
 
 ``` r
 # load data
@@ -142,4 +147,59 @@ classifier$classify(gender_feature("Neo")[[1]])
 #> male
 classifier$classify(gender_feature("Sara")[[1]])
 #> female
+
+classify_accuracy(classifier, test)
+#> 0.7550970277573078
+classifier$show_most_informative_features(5L)
+#> None
+```
+
+### Using suffixes
+
+The last letter of the name is not the best feature we can extract.
+
+``` r
+# load data
+first_names <- first_names(to_r = TRUE) 
+
+# extract last letter as feature
+gender_feature <- function(nms){
+  suffix1 <- substr(nms, nchar(nms)-2, nchar(nms))
+  suffix2 <- substr(nms, nchar(nms)-3, nchar(nms))
+  purrr::map2(suffix1, suffix2, function(x, y){
+    list(
+      suffix1 = x,
+      suffix2 = y
+    )
+  })
+}
+
+features <- gender_feature(first_names$name)
+feature_set <- purrr::map2(features, first_names$gender, function(g, l){
+  list(
+    g, l
+  )
+})
+
+# split train test
+train <- list()
+test <- list()
+for(i in 1:length(feature_set)){
+  draw <- sample(1:2, 1)
+  if(draw == 1)
+    train <- append(train, list(feature_set[[i]]))
+  else
+    test <- append(test, list(feature_set[[i]]))
+}
+
+classifier <- train_bayes_classifier(train)
+classifier$classify(gender_feature("Katheryn")[[1]])
+#> female
+classifier$classify(gender_feature("Mitch")[[1]])
+#> male
+
+classify_accuracy(classifier, test)
+#> 0.7662404092071611
+classifier$show_most_informative_features(5L)
+#> None
 ```

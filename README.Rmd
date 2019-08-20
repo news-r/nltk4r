@@ -61,7 +61,7 @@ nltk4r::download_datasets("all")
 
 Now you're set, you can import the library and get started.
 
-## Example
+## Examples
 
 This is a basic example which shows you how to solve a common problem:
 
@@ -135,6 +135,7 @@ classifier$classify(gender_feature("Neo")[[1]])
 classifier$classify(gender_feature("Sara")[[1]])
 
 classify_accuracy(classifier, test)
+classifier$show_most_informative_features(5L)
 ```
 
 ### Using suffixes
@@ -180,4 +181,5 @@ classifier$classify(gender_feature("Katheryn")[[1]])
 classifier$classify(gender_feature("Mitch")[[1]])
 
 classify_accuracy(classifier, test)
+classifier$show_most_informative_features(5L)
 ```
