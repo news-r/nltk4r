@@ -250,13 +250,14 @@ inaugural_raw <- function(file, to_r = FALSE){
 first_names <- function(to_r = FALSE){
   men <- nltk$corpus$names$words("male.txt")
   women <- nltk$corpus$names$words("female.txt")
-  if(to_r){
-    nms <- tibble::tibble(
-      name = c(reticulate::py_to_r(men), reticulate::py_to_r(women)),
-      gender = c(rep("male", length(men)), rep("female", length(women)))
-    )
-  } else {
-    nms <- c(men, women)
+  nms <- tibble::tibble(
+    name = c(reticulate::py_to_r(men), reticulate::py_to_r(women)),
+    gender = c(rep("male", length(men)), rep("female", length(women)))
+  )
+  if(!to_r){
+    nms %>% 
+      apply(1, as.list) %>% 
+      reticulate::r_to_py()
   }
   return(nms)
 }
